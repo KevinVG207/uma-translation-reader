@@ -17,6 +17,10 @@ export class TranslationIndexerService {
   subCategories: GhFile[] = [];
   chapters: GhFile[] = [];
 
+  lastCategory: string = "";
+  lastSubCategory: string = "";
+  lastChapter: string = "";
+
   constructor(private readonly http: HttpClient, private readonly router: Router) {
   }
 
@@ -31,6 +35,10 @@ export class TranslationIndexerService {
   }
 
   getCategories() {
+    this.categories = [];
+    this.subCategories = [];
+    this.chapters = [];
+
     this.http.get<GhFile[]>(this.baseUrl + this.dataPath).subscribe({
       next: (v) => {
         this.categories = v;
@@ -47,6 +55,15 @@ export class TranslationIndexerService {
     if (categoryId === null) {
       return;
     }
+
+    if (categoryId == this.lastCategory) {
+      return;
+    }
+
+    this.lastCategory = categoryId;
+
+    this.subCategories = [];
+    this.chapters = [];
 
     this.http.get<GhFile[]>(this.baseUrl + this.dataPath + '/' + categoryId).subscribe({
       next: (v) => {
@@ -66,9 +83,25 @@ export class TranslationIndexerService {
       return;
     }
 
+    if (categoryId == this.lastCategory && subCategoryId == this.lastSubCategory) {
+      return;
+    }
+
+    this.lastCategory = categoryId;
+    this.lastSubCategory = subCategoryId;
+
+    this.chapters = [];
+
     this.http.get<GhFile[]>(this.baseUrl + this.dataPath + '/' + categoryId + '/' + subCategoryId).subscribe({
       next: (v) => {
-        this.chapters = v;
+        this.chapters = [];
+        for (const chapter of v) {
+          if (!chapter.name.endsWith(".json")) {
+            continue;
+          }
+
+          this.chapters.push(chapter);
+        }
       },
       error: (e) => {
         console.error(e);

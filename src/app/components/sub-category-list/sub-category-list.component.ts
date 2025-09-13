@@ -16,7 +16,6 @@ export class SubCategoryListComponent {
   }
 
   ngOnInit() {
-    console.log('ngOnInit');
     this.translationIndexerService.getSubCategories(this.route.snapshot.paramMap.get('categoryId'));
   }
 

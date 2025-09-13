@@ -15,7 +15,6 @@ export class ChapterListComponent {
   constructor(readonly translationIndexerService: TranslationIndexerService, readonly route: ActivatedRoute) {}
 
   ngOnInit() {
-    console.log('ngOnInit');
     this.translationIndexerService.getChapters(this.route.snapshot.paramMap.get('categoryId'), this.route.snapshot.paramMap.get('subCategoryId'));
   }
 

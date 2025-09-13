@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {TranslationIndexerService} from '../../services/translation-indexer.service';
 import {StoryTimeline} from '../../model/story-timeline';
 import {HttpClient} from '@angular/common/http';
 import {JsonPipe} from '@angular/common';
@@ -17,7 +16,7 @@ export class ChapterViewComponent {
 
   data: StoryTimeline | undefined;
 
-  constructor(readonly translationIndexerService: TranslationIndexerService, private readonly route: ActivatedRoute, private readonly http: HttpClient, private readonly router: Router) {
+  constructor(private readonly route: ActivatedRoute, private readonly http: HttpClient, private readonly router: Router) {
   }
 
   ngOnInit() {

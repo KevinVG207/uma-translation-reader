@@ -1,0 +1,4 @@
+<p>sub-category-list works!</p>
+@for (category of translationIndexerService.subCategories; track category.name) {
+  <a class="stacked" routerLink="/{{route.snapshot.paramMap.get('categoryId')}}/{{category.name}}">{{category.name}}</a>
+}

@@ -1,0 +1,4 @@
+<p>category-list works!</p>
+@for (category of translationIndexerService.categories; track category.name) {
+  <a class="stacked" routerLink="/{{category.name}}">{{category.name}}</a>
+}

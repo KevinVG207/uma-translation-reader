@@ -1,0 +1,4 @@
+<p>chapter-list works!</p>
+@for (chapter of translationIndexerService.chapters; track chapter.name) {
+  <a class="stacked" routerLink="/{{route.snapshot.paramMap.get('categoryId')}}/{{route.snapshot.paramMap.get('subCategoryId')}}/{{chapter.name.substring(0, chapter.name.indexOf('.json'))}}">{{chapter.name}}</a>
+}

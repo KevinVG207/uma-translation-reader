@@ -9,7 +9,9 @@
       @if (block.name) {
         <app-name-block [charName]="block.name" />
       }
-      <app-text-block [text]="block.text" [ngStyle]="{'width': block.name ? 'calc(100% - 8rem)' : '100%'}" />
+      @if (block.text) {
+        <app-text-block [text]="block.text" [ngStyle]="{'width': block.name ? 'calc(100% - 8rem)' : '100%'}" />
+      }
       @if (block.choice_data_list) {
         @for (choice of collapseChoices(block.choice_data_list); track $index) {
           <app-choice-block [text]="choice" />

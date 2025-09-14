@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {JsonPipe, NgStyle} from '@angular/common';
+import {NgStyle} from '@angular/common';
 import {StoryTimeline} from '../../model/story-timeline';
 import {NameBlockComponent} from '../name-block/name-block.component';
 import {TextBlockComponent} from '../text-block/text-block.component';
@@ -11,7 +11,6 @@ import {TranslationIndexerService} from '../../services/translation-indexer.serv
 @Component({
   selector: 'app-chapter-view',
   imports: [
-    JsonPipe,
     NameBlockComponent,
     TextBlockComponent,
     ChoiceBlockComponent,

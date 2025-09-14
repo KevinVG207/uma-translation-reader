@@ -1,2 +1,21 @@
-<p>chapter-view works!</p>
-<pre>{{data | json}}</pre>
+<div class="btn-container">
+  <button [disabled]="!hasPrevious()" (click)="navigate(getPrevious())">Previous</button>
+  <button [disabled]="!hasNext()" (click)="navigate(getNext())">Next</button>
+</div>
+<h3>{{route.snapshot.paramMap.get('chapterId')}}</h3>
+<div class="chapter-container">
+  @for (block of data?.text_block_list; track $index) {
+    <div class="textblock-container">
+      @if (block.name) {
+        <app-name-block [charName]="block.name" />
+      }
+      <app-text-block [text]="block.text" [ngStyle]="{'width': block.name ? 'calc(100% - 8rem)' : '100%'}" />
+      @if (block.choice_data_list) {
+        @for (choice of collapseChoices(block.choice_data_list); track $index) {
+          <app-choice-block [text]="choice" />
+        }
+      }
+    </div>
+  }
+  <pre>{{data | json}}</pre>
+</div>

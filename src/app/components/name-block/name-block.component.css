@@ -1,0 +1,6 @@
+.nameblock {
+  width: 8rem;
+  border: 1px solid black;
+  height: 100%;
+  overflow-wrap: break-word;
+}

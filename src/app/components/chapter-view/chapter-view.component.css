@@ -1,0 +1,22 @@
+h3 {
+  text-align: center;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.chapter-container {
+  max-width: min(100vw, 700px);
+}
+
+.textblock-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 3rem;
+  flex-wrap: wrap;
+}

@@ -1,6 +1,7 @@
 :host {
-  display: flex;
-  width: 30rem;
-  background-color: red;
-  flex-direction: row;
+  flex-grow: 2;
+}
+
+.textblock {
+  height: 100%;
 }

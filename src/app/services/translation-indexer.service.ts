@@ -21,6 +21,9 @@ export class TranslationIndexerService {
   lastSubCategory: string = "";
   lastChapter: string = "";
 
+  repoUser: string = "";
+  repoName: string = "";
+
   constructor(private readonly http: HttpClient, private readonly router: Router) {
   }
 
@@ -28,7 +31,11 @@ export class TranslationIndexerService {
     value = value.toLowerCase();
     value = value.substring(value.indexOf("github.com/") + 11);
     let values = value.split("/");
-    let newBase = "https://api.github.com/repos/" + values[0] + "/" + values[1];
+
+    this.repoUser = values[0];
+    this.repoName = values[1];
+
+    let newBase = "https://api.github.com/repos/" + this.repoUser + "/" + this.repoName;
     this.repoUrlSubject.next(newBase);
     this.baseUrl = newBase;
     this.getCategories();
@@ -56,7 +63,7 @@ export class TranslationIndexerService {
       return;
     }
 
-    if (categoryId == this.lastCategory) {
+    if (this.subCategories && categoryId == this.lastCategory) {
       return;
     }
 
@@ -83,7 +90,7 @@ export class TranslationIndexerService {
       return;
     }
 
-    if (categoryId == this.lastCategory && subCategoryId == this.lastSubCategory) {
+    if (this.chapters && categoryId == this.lastCategory && subCategoryId == this.lastSubCategory) {
       return;
     }
 

@@ -12,6 +12,7 @@ export class TranslationIndexerService {
   repoUrlSubject = new Subject<string>();
   private baseUrl: string = "";
   private readonly dataPath = "/contents/localized_data/assets/story/data"
+  private readonly queryParams = "?ref=main"
 
   categories: GhFile[] = [];
   subCategories: GhFile[] = [];
@@ -46,7 +47,7 @@ export class TranslationIndexerService {
     this.subCategories = [];
     this.chapters = [];
 
-    this.http.get<GhFile[]>(this.baseUrl + this.dataPath).subscribe({
+    this.http.get<GhFile[]>(this.baseUrl + this.dataPath + this.queryParams).subscribe({
       next: (v) => {
         this.categories = v;
       },
@@ -72,7 +73,7 @@ export class TranslationIndexerService {
     this.subCategories = [];
     this.chapters = [];
 
-    this.http.get<GhFile[]>(this.baseUrl + this.dataPath + '/' + categoryId).subscribe({
+    this.http.get<GhFile[]>(this.baseUrl + this.dataPath + '/' + categoryId + this.queryParams).subscribe({
       next: (v) => {
         this.subCategories = v;
       },
@@ -99,7 +100,7 @@ export class TranslationIndexerService {
 
     this.chapters = [];
 
-    this.http.get<GhFile[]>(this.baseUrl + this.dataPath + '/' + categoryId + '/' + subCategoryId).subscribe({
+    this.http.get<GhFile[]>(this.baseUrl + this.dataPath + '/' + categoryId + '/' + subCategoryId + this.queryParams).subscribe({
       next: (v) => {
         this.chapters = [];
         for (const chapter of v) {
